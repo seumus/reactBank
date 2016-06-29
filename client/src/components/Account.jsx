@@ -2,13 +2,18 @@ var React = require('react');
 
 var Account = React.createClass({
 
+  handleAccountClick: function (event) {
+    this.props.displayAccountInfo(event.target.id);
+  },
+
   render: function() {
     return (
       <div>
-        <ul>
-          <li>Name: {this.props.name}</li>
-          <li>Amount: {this.props.amount.toFixed(2)}</li>
-        </ul>
+        <button
+          type='button'
+          id={this.props.name}
+          onClick={this.handleAccountClick}>{this.props.name}
+        </button>
       </div>
     );
   }

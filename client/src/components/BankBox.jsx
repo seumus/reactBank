@@ -10,8 +10,18 @@ var React = require('react');
 var BankBox = React.createClass({
   getInitialState: function() {
     return {
-      accounts: data
+      accounts: data,
+      selectedAccount: null
     };
+  },
+
+  displayAccountInfo: function(id) {
+    var selectedAccount = this.state.accounts.filter(function (account) {
+      // console.log('ham', account);
+      return account.owner === id;
+    })
+    this.setState({selectedAccount: selectedAccount[0]})
+    // console.log("cheese",this.state.selectedAccount);
   },
 
   getTotal: function(data) {
@@ -51,6 +61,10 @@ var BankBox = React.createClass({
   },
 
   render: function() {
+    var displayInfoBox = <h4> No Account Selected</h4>
+      if(this.state.selectedAccount) {
+        displayInfoBox = <AccountInfoBox account={this.state.selectedAccount}/>
+      }
     return (
       <div>
         <div className="main-header">
@@ -58,11 +72,15 @@ var BankBox = React.createClass({
         </div>
 
       <h2>Total: {this.getTotal(this.state.accounts).toFixed(2)}</h2>
+
       <div>
-        <AccountBox  title='Personal' data={this.sortAccounts("Personal")} getTotal={this.getTotal}/>
-        <AccountBox  title='Business' data={this.sortAccounts("Business")} getTotal={this.getTotal}/>
-        <AccountInfoBox />
+        <AccountBox  title='Personal' data={this.sortAccounts("Personal")} getTotal={this.getTotal} displayAccountInfo={this.displayAccountInfo}/>
+
+        <AccountBox  title='Business' data={this.sortAccounts("Business")} getTotal={this.getTotal} displayAccountInfo={this.displayAccountInfo}/>
+        {displayInfoBox}
+
       </div>
+
       <button onClick={this.handleClick} type='button' >Add Interest</button>
       <AccountForm onAddAccount={this.addAccount}/>
       </div>

@@ -19707,8 +19707,18 @@
 	
 	  getInitialState: function getInitialState() {
 	    return {
-	      accounts: data
+	      accounts: data,
+	      selectedAccount: null
 	    };
+	  },
+	
+	  displayAccountInfo: function displayAccountInfo(id) {
+	    var selectedAccount = this.state.accounts.filter(function (account) {
+	      // console.log('ham', account);
+	      return account.owner === id;
+	    });
+	    this.setState({ selectedAccount: selectedAccount[0] });
+	    // console.log("cheese",this.state.selectedAccount);
 	  },
 	
 	  getTotal: function getTotal(data) {
@@ -19792,6 +19802,14 @@
 	  },
 	
 	  render: function render() {
+	    var displayInfoBox = React.createElement(
+	      'h4',
+	      null,
+	      ' No Account Selected'
+	    );
+	    if (this.state.selectedAccount) {
+	      displayInfoBox = React.createElement(AccountInfoBox, { account: this.state.selectedAccount });
+	    }
 	    return React.createElement(
 	      'div',
 	      null,
@@ -19809,9 +19827,9 @@
 	      React.createElement(
 	        'div',
 	        null,
-	        React.createElement(AccountBox, { title: 'Personal', data: this.sortAccounts("Personal"), getTotal: this.getTotal }),
-	        React.createElement(AccountBox, { title: 'Business', data: this.sortAccounts("Business"), getTotal: this.getTotal }),
-	        React.createElement(AccountInfoBox, null)
+	        React.createElement(AccountBox, { title: 'Personal', data: this.sortAccounts("Personal"), getTotal: this.getTotal, displayAccountInfo: this.displayAccountInfo }),
+	        React.createElement(AccountBox, { title: 'Business', data: this.sortAccounts("Business"), getTotal: this.getTotal, displayAccountInfo: this.displayAccountInfo }),
+	        displayInfoBox
 	      ),
 	      React.createElement(
 	        'button',
@@ -19832,19 +19850,19 @@
 
 	"use strict";
 	
-	module.exports = [{ owner: "jay",
+	module.exports = [{ owner: "Jay",
 	  amount: 125.50,
 	  type: "Personal"
-	}, { owner: "val",
+	}, { owner: "Val",
 	  amount: 55125.10,
 	  type: "Personal"
-	}, { owner: "marc",
+	}, { owner: "Marc",
 	  amount: 400.00,
 	  type: "Personal"
-	}, { owner: "keith",
+	}, { owner: "Keith",
 	  amount: 220.25,
 	  type: "Business"
-	}, { owner: "rick",
+	}, { owner: "Rick",
 	  amount: 100000.00,
 	  type: "Business"
 	}];
@@ -19867,8 +19885,8 @@
 	
 	    console.log(this.props.data);
 	    var accounts = this.props.data.map(function (account, index) {
-	      return React.createElement(Account, { key: index, name: account.owner, amount: account.amount });
-	    });
+	      return React.createElement(Account, { key: index, name: account.owner, displayAccountInfo: this.props.displayAccountInfo });
+	    }.bind(this));
 	
 	    return React.createElement(
 	      'div',
@@ -19906,25 +19924,21 @@
 	  displayName: 'Account',
 	
 	
+	  handleAccountClick: function handleAccountClick(event) {
+	    this.props.displayAccountInfo(event.target.id);
+	  },
+	
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(
-	        'ul',
-	        null,
-	        React.createElement(
-	          'li',
-	          null,
-	          'Name: ',
-	          this.props.name
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
-	          'Amount: ',
-	          this.props.amount.toFixed(2)
-	        )
+	        'button',
+	        {
+	          type: 'button',
+	          id: this.props.name,
+	          onClick: this.handleAccountClick },
+	        this.props.name
 	      )
 	    );
 	  }
@@ -20147,13 +20161,31 @@
 	
 	
 	  render: function render() {
+	    console.log("t", this.props.account);
 	    return React.createElement(
 	      'div',
 	      { className: 'infoBox' },
 	      React.createElement(
 	        'h2',
+	        { className: 'cheese' },
+	        this.props.account.owner,
+	        '\'s Account Info: '
+	      ),
+	      React.createElement(
+	        'ul',
 	        null,
-	        'This'
+	        React.createElement(
+	          'li',
+	          null,
+	          'Amount: ',
+	          this.props.account.amount
+	        ),
+	        React.createElement(
+	          'li',
+	          null,
+	          'Type: ',
+	          this.props.account.type
+	        )
 	      )
 	    );
 	  }
