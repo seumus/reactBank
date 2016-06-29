@@ -1,0 +1,78 @@
+body {
+  background-color: #3373ce;
+  color: #c28732;
+  text-align: center;
+  background-image: url('./images/numwarp.jpg');
+}
+
+.cheese {
+  background-color: black;
+  text-align: center;
+}
+
+ul li {
+  list-style: none;
+
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  display: inline-block;
+}
+
+#bex {
+  color: rebeccapurple;
+}
+
+#shay {
+  color: green;
+}
+
+.main-header {
+  background-image: url('./images/logo.png');
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: 7%;
+  background-position: 90% 50%;
+
+  /*background-size: contain;*/
+  /*background-size: 250px;*/
+
+  /*height: 120px;*/
+
+  /*display: inline-block;*/
+  /*margin-left: 5%;
+  padding-left: 55%*/
+
+}
+
+h1 {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-image: url('./images/title.png');
+  background-size: 30%;
+  background-repeat: no-repeat;
+  background-color: grey;
+  /*display: inline-block;*/
+  /*margin-right: 10%;
+  margin-left: 20%;*/
+}
+
+.accountBox {
+  background-color: rgba(128,128,128,0.6);
+  display: inline-block;
+}
+
+.boxes {
+  display:inline-block;
+  width: 15%;
+}
+
+.infoBox {
+  display: inline-block;
+}
