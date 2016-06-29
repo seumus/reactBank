@@ -13,10 +13,10 @@ var AccountBox = React.createClass({
     }.bind(this))
 
     return (
-      <div className='accountBox'>
-          <h2 className='cheese'> {this.props.title} Accounts</h2>
+      <div className='box'>
+          <h3 className='box-header'> {this.props.title} Accounts</h3>
           {accounts}
-          <h3>Total: {this.props.getTotal(this.props.data).toFixed(2)}</h3>
+          <h4>Total: £{this.props.getTotal(this.props.data).toFixed(2) .toLocaleString()}</h4>
       </div>
     );
   }

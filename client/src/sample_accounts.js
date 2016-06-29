@@ -1,22 +1,27 @@
 module.exports = [
-  { owner: "Jay",
-    amount: 125.50,
+  { owner: "Seumus",
+    amount: 125000.50,
     type: "Personal"
   },
-  { owner: "Val",
-    amount: 55125.10,
+  { owner: "Poppy",
+    amount: 6515.10,
     type: "Personal"
   },
-  { owner: "Marc",
-    amount: 400.00,
+  { owner: "Bex",
+    amount: 50000.00,
     type: "Personal"
   },
-  { owner: "Keith",
-    amount: 220.25,
+  { owner: "Gustos",
+    amount: 446073.00,
     type: "Business"
   },
-  { owner: "Rick",
-    amount: 100000.00,
+  { owner: "Shares 'R' Us",
+    amount: 17220600.25,
+    type: "Business"
+  },
+  { owner: "Pets At Home",
+    amount: 800000.01,
     type: "Business"
   }
+
 ]

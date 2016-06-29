@@ -26,15 +26,19 @@ var AccountForm = React.createClass({
 
   render: function() {
     return (
-      <form>
-        <label>Owner: <input type='text' value={this.state.owner} onChange={this.handleOwnerChange}/></label>
-        <label>Amount: <input type='number' value={this.state.amount} onChange={this.handleAmountChange}/></label>
-        <label>Type: <select onChange={this.handleTypeChange} value={this.state.type}>
-          <option value='Personal'>Personal</option>
-          <option value='Business'>Business</option>
-        </select></label>
-        <button type="button" onClick={this.handleSubmit} >Add Account</button>
-      </form>
+        <form className="form">
+          <h2 className="form-header">Add an Account</h2>
+          <label>Owner: <input type='text' value={this.state.owner} onChange={this.handleOwnerChange}/></label>
+
+          <label>Amount: <input type='number' value={this.state.amount} onChange={this.handleAmountChange}/></label>
+
+          <label>Type: <select onChange={this.handleTypeChange} value={this.state.type}>
+            <option value='Personal'>Personal</option>
+            <option value='Business'>Business</option>
+          </select></label>
+
+        <button className="add-btn btn form-btn" type="button" onClick={this.handleSubmit} >Add Account</button>
+        </form>
     );
   }
 

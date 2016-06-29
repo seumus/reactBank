@@ -10,6 +10,7 @@ var Account = React.createClass({
     return (
       <div>
         <button
+          className="btn acc-btn"
           type='button'
           id={this.props.name}
           onClick={this.handleAccountClick}>{this.props.name}

@@ -4,13 +4,12 @@ var PropTypes = React.PropTypes;
 var AccountInfoBox = React.createClass({
 
   render: function() {
-    console.log("t",this.props.account)
     return (
 
-      <div className='infoBox'>
-        <h2 className='cheese'>{this.props.account.owner}'s Account Info: </h2>
+      <div className='box info-box'>
+        <h3 className='box-header'>{this.props.account.owner}s Account Info: </h3>
         <ul>
-          <li>Amount: {this.props.account.amount}</li>
+          <li>Amount: £{this.props.account.amount.toLocaleString()}</li>
           <li>Type: {this.props.account.type}</li>
         </ul>
       </div>
